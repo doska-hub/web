@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Краткий пересказ Истории</title>
+<meta name="description" content="Краткий пересказ истории России по эпохам: от Рюрика до наших дней, с главными датами и поиском.">
+<style>
+:root{color-scheme:light dark;--text:#0f1d33;--muted:#41526b;--accent:#1456e8;
+--panel:linear-gradient(135deg,rgba(255,255,255,.8),rgba(255,255,255,.38) 48%,rgba(255,255,255,.6));
+--panel-strong:linear-gradient(135deg,rgba(255,255,255,.92),rgba(255,255,255,.62) 50%,rgba(255,255,255,.8));
+--sub:rgba(255,255,255,.6);--edge:rgba(255,255,255,.7);--spec:rgba(255,255,255,.6);
+--shadow:0 14px 40px rgba(30,50,120,.13);--rim:inset 0 1.5px 1px rgba(255,255,255,.95),inset 0 -1.5px 1px rgba(255,255,255,.3),inset 0 0 24px rgba(255,255,255,.2);
+--bg:radial-gradient(34vmax 34vmax at 10% 6%,#b9d8ff,transparent 65%),radial-gradient(30vmax 30vmax at 92% 14%,#ffd1e7,transparent 65%),radial-gradient(34vmax 34vmax at 80% 48%,#d8cbff,transparent 65%),radial-gradient(36vmax 36vmax at 8% 55%,#fff0bb,transparent 65%),radial-gradient(38vmax 38vmax at 85% 95%,#c8f2e1,transparent 65%),radial-gradient(34vmax 34vmax at 25% 98%,#ffd8c6,transparent 65%),#f5f8ff}
+@media (prefers-color-scheme:dark){:root{--text:#f1f5ff;--muted:#b3bfd6;--accent:#8fb8ff;
+--panel:linear-gradient(135deg,rgba(255,255,255,.24),rgba(255,255,255,.05) 48%,rgba(255,255,255,.12));
+--panel-strong:linear-gradient(135deg,rgba(255,255,255,.34),rgba(255,255,255,.12) 50%,rgba(255,255,255,.2));
+--sub:rgba(255,255,255,.08);--edge:rgba(255,255,255,.28);--spec:rgba(255,255,255,.22);
+--shadow:0 14px 40px rgba(0,0,0,.5);--rim:inset 0 1.5px 1px rgba(255,255,255,.35),inset 0 -1.5px 1px rgba(255,255,255,.08),inset 0 0 24px rgba(255,255,255,.05);
+--bg:radial-gradient(34vmax 34vmax at 10% 6%,#2450ff,transparent 65%),radial-gradient(30vmax 30vmax at 92% 14%,#d6309a,transparent 65%),radial-gradient(34vmax 34vmax at 80% 48%,#6a38e0,transparent 65%),radial-gradient(36vmax 36vmax at 8% 55%,#b07a08,transparent 65%),radial-gradient(38vmax 38vmax at 85% 95%,#0c9a78,transparent 65%),radial-gradient(34vmax 34vmax at 25% 98%,#c2441e,transparent 65%),#080c1a}}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--text);font:17px/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Arial,sans-serif}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:var(--bg)}
+input,select,textarea,.cat,#admin,.chip{background:var(--panel);-webkit-backdrop-filter:blur(20px) saturate(200%) brightness(1.06);backdrop-filter:blur(20px) saturate(200%) brightness(1.06);border:1px solid var(--edge);box-shadow:var(--shadow),var(--rim)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){input,select,textarea,.cat,#admin,.chip{background:var(--panel-strong)}}
+main{max-width:900px;margin:0 auto;padding:44px 16px 80px}
+h1{font-size:clamp(32px,9vw,46px);line-height:1.1;letter-spacing:-.03em;margin:0 0 24px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+.chip{font-size:15px;font-weight:600;line-height:1;font-family:inherit;padding:12px 18px;border-radius:999px;color:var(--text);cursor:pointer;transition:background .2s}
+.chip:hover{background:var(--panel-strong)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+input,select,textarea{width:100%;font-size:16px;font-family:inherit;color:var(--text);padding:15px 22px;border-radius:999px;margin:0 0 18px}
+#q{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%2341526b' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='8.5' cy='8.5' r='6'/%3E%3Cpath d='m13 13 5 5'/%3E%3C/svg%3E") no-repeat 22px center/20px,var(--panel);padding-left:54px}
+#admin input,#admin select,textarea{border-radius:18px;padding:14px 18px;margin:0 0 12px}
+textarea{resize:vertical}
+.cat{border-radius:26px;margin:0 0 14px}
+.cat>summary{position:relative;display:flex;justify-content:space-between;align-items:center;gap:12px;list-style:none;cursor:pointer;padding:20px 22px;border-radius:26px;font-weight:600;font-size:22px;letter-spacing:-.015em}
+.cat>summary::-webkit-details-marker{display:none}
+.cat>summary::before,#admin::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:radial-gradient(90% 130% at 14% 0%,var(--spec),transparent 62%);pointer-events:none}
+.tg{font-size:14px;font-weight:600;color:var(--accent);padding:8px 14px;border-radius:999px;background:var(--sub);border:1px solid var(--edge);box-shadow:inset 0 1px 1px rgba(255,255,255,.7)}
+.cat>.body{padding:0 14px 14px}
+.cat details{background:var(--sub);border:1px solid var(--edge);border-radius:18px;margin:0 0 8px}
+.cat details[open]{background:var(--panel-strong)}
+.cat details summary{cursor:pointer;padding:14px 16px;font-weight:600;font-size:18px}
+summary small{display:block;font-weight:400;font-size:14px;color:var(--muted)}
+.body p{margin:0 0 10px}
+.cat details .body{padding:0 16px 14px}
+.dates{border-left:3px solid var(--accent);padding-left:12px;font-size:15px;line-height:1.5;margin:0;list-style:none;color:var(--muted)}
+#admin{position:relative;border-radius:28px;padding:20px;margin:0 0 20px}
+#admin[hidden]{display:none}
+#admin h2{margin:0 0 14px;font-size:22px;letter-spacing:-.015em}
+.mine{display:flex;gap:8px;align-items:center;justify-content:space-between;border-top:1px solid var(--edge);padding:10px 0;font-size:15px}
+</style>
+</head>
+<body>
+<main>
+<h1>Краткий пересказ Истории</h1>
+<section id="admin" hidden>
+<h2>Редактор тем</h2>
+<div id="a-login">
+<input type="text" id="a-repo" placeholder="логин/репозиторий" aria-label="Репозиторий GitHub" autocapitalize="off" autocomplete="off">
+<input type="password" id="a-tok" placeholder="Токен GitHub" aria-label="Токен GitHub" autocomplete="off">
+<div class="row"><button class="chip" id="a-in">Войти</button><button class="chip" id="a-x">Закрыть</button></div>
+</div>
+<div id="a-edit" hidden>
+<select id="a-g" aria-label="Категория"></select>
+<input type="text" id="a-era" placeholder="Годы, например: 1801–1825" aria-label="Годы">
+<input type="text" id="a-title" placeholder="Название темы" aria-label="Название темы">
+<textarea id="a-text" rows="6" placeholder="Краткий пересказ" aria-label="Краткий пересказ"></textarea>
+<textarea id="a-dates" rows="4" placeholder="Главные даты, по одной на строке" aria-label="Главные даты"></textarea>
+<div class="row"><button class="chip" id="a-save">Добавить тему</button><button class="chip" id="a-new">Очистить форму</button><button class="chip" id="a-close">Закрыть</button><button class="chip" id="a-out">Выйти</button></div>
+<div id="a-mine"></div>
+</div>
+</section>
+<input type="search" id="q" aria-label="Поиск по истории">
+<div id="list"></div>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const CATS=[5,6,7,8,9,10,11].map(n=>n+" класс");
+const openCats=new Set();
+let topics=[],editing="",repo="",tok="";
+try{repo=localStorage.getItem("gh_repo")||"";tok=sessionStorage.getItem("gh_tok")||""}catch(e){}
+const H=()=>({Authorization:"Bearer "+tok,Accept:"application/vnd.github+json"});
+const fail=r=>new Error(r.status===401?"Неверный токен":(r.status===403||r.status===404)?"Нет доступа к репозиторию. Проверьте имя и права токена":(r.status===409||r.status===422)?"Данные изменились, попробуйте ещё раз":"Ошибка GitHub ("+r.status+")");
+async function ghGet(){
+  const base="https://api.github.com/repos/"+repo;
+  const rr=await fetch(base,{headers:H(),cache:"no-store"});
+  if(!rr.ok)throw fail(rr);
+  const info=await rr.json();
+  if(info.permissions&&!info.permissions.push)throw new Error("У токена нет права записи");
+  const r=await fetch(base+"/contents/data.json",{headers:H(),cache:"no-store"});
+  if(r.status===404)return{sha:null,list:[]};
+  if(!r.ok)throw fail(r);
+  const j=await r.json();
+  const txt=new TextDecoder().decode(Uint8Array.from(atob(j.content.replace(/\s/g,"")),c=>c.charCodeAt(0)));
+  let list=[];try{list=JSON.parse(txt)}catch(e){}
+  return{sha:j.sha,list:Array.isArray(list)?list:[]};
+}
+async function ghPut(list,sha){
+  const bytes=new TextEncoder().encode(JSON.stringify(list,null,1));
+  let bin="";bytes.forEach(b=>bin+=String.fromCharCode(b));
+  const body={message:"Обновление тем",content:btoa(bin)};if(sha)body.sha=sha;
+  const r=await fetch("https://api.github.com/repos/"+repo+"/contents/data.json",{method:"PUT",headers:Object.assign({"Content-Type":"application/json"},H()),body:JSON.stringify(body)});
+  if(!r.ok)throw fail(r);
+}
+async function change(fn){const{sha,list}=await ghGet();const next=fn(list);await ghPut(next,sha);topics=next;render();fillList()}
+async function load(){
+  try{const r=await fetch("data.json?"+Date.now(),{cache:"no-store"});topics=await r.json()}catch(e){topics=[]}
+  if(!Array.isArray(topics))topics=[];
+  render();fillList();
+}
+function topic(x,q){return `<details${q?" open":""}><summary>${esc(x.title)}<small>${esc(x.era||"")}</small></summary><div class="body"><p>${esc(x.text)}</p><ul class="dates">${(x.dates||[]).map(d=>`<li>${esc(d)}</li>`).join("")}</ul></div></details>`}
+function render(){
+  const q=$("#q").value.trim().toLowerCase();
+  $("#list").innerHTML=CATS.map(c=>{
+    const items=topics.filter(x=>x.g===c&&(!q||((x.era||"")+x.title+x.text+(x.dates||[]).join(" ")).toLowerCase().includes(q)));
+    if(q&&!items.length)return "";
+    const op=q||openCats.has(c);
+    return `<details class="cat" data-c="${esc(c)}"${op?" open":""}><summary><span>${esc(c)}</span><span class="tg">${op?"Свернуть":"Развернуть"}</span></summary><div class="body">${items.map(x=>topic(x,q)).join("")}</div></details>`;
+  }).join("");
+}
+$("#list").addEventListener("toggle",e=>{
+  const d=e.target;if(!d.classList.contains("cat"))return;
+  d.querySelector(".tg").textContent=d.open?"Свернуть":"Развернуть";
+  if(!$("#q").value.trim()){d.open?openCats.add(d.dataset.c):openCats.delete(d.dataset.c)}
+},true);
+function resetForm(){editing="";["#a-era","#a-title","#a-text","#a-dates"].forEach(x=>$(x).value="");$("#a-save").textContent="Добавить тему"}
+function fillList(){
+  $("#a-mine").innerHTML=topics.map(x=>`<div class="mine"><span>${esc(x.g)}: ${esc(x.title)}</span><span><button class="chip" data-e="${esc(x.id)}">Изменить</button> <button class="chip" data-d="${esc(x.id)}">Удалить</button></span></div>`).join("");
+}
+function showEditor(){$("#a-login").hidden=true;$("#a-edit").hidden=false;fillList()}
+function showLogin(){$("#a-login").hidden=false;$("#a-edit").hidden=true;$("#a-repo").value=repo;$("#a-tok").value=""}
+async function openAdmin(){
+  $("#admin").hidden=false;$("#admin").scrollIntoView();
+  if(repo&&tok){try{const{list}=await ghGet();topics=list;render();showEditor();return}catch(e){}}
+  showLogin();$("#a-repo").focus();
+}
+CATS.forEach(c=>$("#a-g").add(new Option(c,c)));
+$("#a-in").onclick=async()=>{
+  repo=$("#a-repo").value.trim().replace(/^https?:\/\/github\.com\//,"").replace(/\/$/,"");tok=$("#a-tok").value.trim();
+  try{
+    const{list}=await ghGet();topics=list;
+    try{localStorage.setItem("gh_repo",repo);sessionStorage.setItem("gh_tok",tok)}catch(e){}
+    render();showEditor();
+  }catch(e){tok="";alert(e.message)}
+};
+$("#a-x").onclick=$("#a-close").onclick=()=>{$("#admin").hidden=true};
+$("#a-out").onclick=()=>{tok="";try{sessionStorage.removeItem("gh_tok")}catch(e){}resetForm();showLogin();$("#admin").hidden=true};
+$("#a-save").onclick=async()=>{
+  const t=$("#a-title").value.trim(),tx=$("#a-text").value.trim();
+  if(!t||!tx){alert("Заполните название и пересказ.");return}
+  const item={id:editing||(Date.now().toString(36)+Math.random().toString(36).slice(2,6)),g:$("#a-g").value,era:$("#a-era").value.trim(),title:t,text:tx,dates:$("#a-dates").value.split("\n").map(x=>x.trim()).filter(Boolean)};
+  try{
+    await change(list=>{const i=list.findIndex(x=>x.id===item.id);if(i>=0)list[i]=item;else list.push(item);return list});
+    openCats.add(item.g);resetForm();render();
+  }catch(e){alert(e.message)}
+};
+$("#a-new").onclick=resetForm;
+$("#a-mine").onclick=async e=>{
+  const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.d){
+    if(!confirm("Удалить тему?"))return;
+    try{await change(list=>list.filter(x=>x.id!==b.dataset.d));resetForm()}catch(er){alert(er.message)}
+  }else{
+    const x=topics.find(t=>t.id===b.dataset.e);if(!x)return;
+    editing=x.id;$("#a-g").value=x.g;$("#a-era").value=x.era||"";$("#a-title").value=x.title;$("#a-text").value=x.text;$("#a-dates").value=(x.dates||[]).join("\n");
+    $("#a-save").textContent="Сохранить изменения";$("#admin").scrollIntoView();
+  }
+};
+$("#q").oninput=()=>{
+  if($("#q").value.trim().toLowerCase()==="/createadminpanel"){$("#q").value="";render();openAdmin();return}
+  render();
+};
+load();
+</script>
+</body>
+</html>
