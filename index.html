@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Краткий пересказ Истории</title>
 <meta name="description" content="Краткий пересказ истории России по эпохам: от Рюрика до наших дней, с главными датами и поиском.">
 <style>
@@ -50,6 +50,13 @@ summary small{display:block;font-weight:400;font-size:14px;color:var(--muted)}
 #admin[hidden]{display:none}
 #admin h2{margin:0 0 14px;font-size:22px;letter-spacing:-.015em}
 .mine{display:flex;gap:8px;align-items:center;justify-content:space-between;border-top:1px solid var(--edge);padding:10px 0;font-size:15px}
+main{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right));padding-bottom:max(80px,env(safe-area-inset-bottom))}
+.body p,summary{overflow-wrap:anywhere}
+.mine{flex-wrap:wrap}
+.mine>span:first-child{min-width:0;overflow-wrap:anywhere}
+.mine>span:last-child{display:flex;gap:8px}
+@media (max-width:520px){.mine{flex-direction:column;align-items:stretch}.mine .chip{flex:1}}
+@media (min-width:860px){main{max-width:960px}}
 </style>
 </head>
 <body>
@@ -64,6 +71,7 @@ summary small{display:block;font-weight:400;font-size:14px;color:var(--muted)}
 </div>
 <div id="a-edit" hidden>
 <select id="a-g" aria-label="Категория"></select>
+<input type="text" id="a-book" placeholder="Название книги" aria-label="Название книги">
 <input type="text" id="a-era" placeholder="Годы, например: 1801–1825" aria-label="Годы">
 <input type="text" id="a-title" placeholder="Название темы" aria-label="Название темы">
 <textarea id="a-text" rows="6" placeholder="Краткий пересказ" aria-label="Краткий пересказ"></textarea>
@@ -111,11 +119,11 @@ async function load(){
   if(!Array.isArray(topics))topics=[];
   render();fillList();
 }
-function topic(x,q){return `<details${q?" open":""}><summary>${esc(x.title)}<small>${esc(x.era||"")}</small></summary><div class="body"><p>${esc(x.text)}</p><ul class="dates">${(x.dates||[]).map(d=>`<li>${esc(d)}</li>`).join("")}</ul></div></details>`}
+function topic(x,q){return `<details${q?" open":""}><summary>${esc(x.title)}<small>${esc([x.book,x.era].filter(Boolean).join(" · "))}</small></summary><div class="body"><p>${esc(x.text)}</p><ul class="dates">${(x.dates||[]).map(d=>`<li>${esc(d)}</li>`).join("")}</ul></div></details>`}
 function render(){
   const q=$("#q").value.trim().toLowerCase();
   $("#list").innerHTML=CATS.map(c=>{
-    const items=topics.filter(x=>x.g===c&&(!q||((x.era||"")+x.title+x.text+(x.dates||[]).join(" ")).toLowerCase().includes(q)));
+    const items=topics.filter(x=>x.g===c&&(!q||((x.book||"")+(x.era||"")+x.title+x.text+(x.dates||[]).join(" ")).toLowerCase().includes(q)));
     if(q&&!items.length)return "";
     const op=q||openCats.has(c);
     return `<details class="cat" data-c="${esc(c)}"${op?" open":""}><summary><span>${esc(c)}</span><span class="tg">${op?"Свернуть":"Развернуть"}</span></summary><div class="body">${items.map(x=>topic(x,q)).join("")}</div></details>`;
@@ -126,7 +134,7 @@ $("#list").addEventListener("toggle",e=>{
   d.querySelector(".tg").textContent=d.open?"Свернуть":"Развернуть";
   if(!$("#q").value.trim()){d.open?openCats.add(d.dataset.c):openCats.delete(d.dataset.c)}
 },true);
-function resetForm(){editing="";["#a-era","#a-title","#a-text","#a-dates"].forEach(x=>$(x).value="");$("#a-save").textContent="Добавить тему"}
+function resetForm(){editing="";["#a-book","#a-era","#a-title","#a-text","#a-dates"].forEach(x=>$(x).value="");$("#a-save").textContent="Добавить тему"}
 function fillList(){
   $("#a-mine").innerHTML=topics.map(x=>`<div class="mine"><span>${esc(x.g)}: ${esc(x.title)}</span><span><button class="chip" data-e="${esc(x.id)}">Изменить</button> <button class="chip" data-d="${esc(x.id)}">Удалить</button></span></div>`).join("");
 }
@@ -151,7 +159,7 @@ $("#a-out").onclick=()=>{tok="";try{sessionStorage.removeItem("gh_tok")}catch(e)
 $("#a-save").onclick=async()=>{
   const t=$("#a-title").value.trim(),tx=$("#a-text").value.trim();
   if(!t||!tx){alert("Заполните название и пересказ.");return}
-  const item={id:editing||(Date.now().toString(36)+Math.random().toString(36).slice(2,6)),g:$("#a-g").value,era:$("#a-era").value.trim(),title:t,text:tx,dates:$("#a-dates").value.split("\n").map(x=>x.trim()).filter(Boolean)};
+  const item={id:editing||(Date.now().toString(36)+Math.random().toString(36).slice(2,6)),g:$("#a-g").value,book:$("#a-book").value.trim(),era:$("#a-era").value.trim(),title:t,text:tx,dates:$("#a-dates").value.split("\n").map(x=>x.trim()).filter(Boolean)};
   try{
     await change(list=>{const i=list.findIndex(x=>x.id===item.id);if(i>=0)list[i]=item;else list.push(item);return list});
     openCats.add(item.g);resetForm();render();
@@ -165,7 +173,7 @@ $("#a-mine").onclick=async e=>{
     try{await change(list=>list.filter(x=>x.id!==b.dataset.d));resetForm()}catch(er){alert(er.message)}
   }else{
     const x=topics.find(t=>t.id===b.dataset.e);if(!x)return;
-    editing=x.id;$("#a-g").value=x.g;$("#a-era").value=x.era||"";$("#a-title").value=x.title;$("#a-text").value=x.text;$("#a-dates").value=(x.dates||[]).join("\n");
+    editing=x.id;$("#a-g").value=x.g;$("#a-book").value=x.book||"";$("#a-era").value=x.era||"";$("#a-title").value=x.title;$("#a-text").value=x.text;$("#a-dates").value=(x.dates||[]).join("\n");
     $("#a-save").textContent="Сохранить изменения";$("#admin").scrollIntoView();
   }
 };
